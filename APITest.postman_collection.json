@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "947a5911-3f16-4964-9574-259bef2a4935",
+		"name": "APITest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "天气类",
+			"item": [
+				{
+					"name": "天气实况",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code name has OK\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location).to.have.all.keys(\"id\", \"name\", \"country\", \"path\", \"timezone\", \"timezone_offset\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location.name).to.eql(\"北京\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=beijing&language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "beijing"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气实况1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Status code name has OK\", function () {",
+									"    pm.response.to.have.status(\"OK\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location).to.have.all.keys(\"id\", \"name\", \"country\", \"path\", \"timezone\", \"timezone_offset\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location.name).to.eql(\"北京\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=北京&language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "北京"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气实况-空",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Status code name has Forbidden\", function () {",
+									"    pm.response.to.have.status(\"Forbidden\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.all.keys(\"status\", \"status_code\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status_code).to.eql(\"AP010001\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=&language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": ""
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气实况-num",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Status code name has Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.all.keys(\"status\", \"status_code\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status_code).to.eql(\"AP010010\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=110000&language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "110000"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气实况-空格",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Status code name has Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.all.keys(\"status\", \"status_code\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status_code).to.eql(\"AP010010\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=      &language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "      "
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气实况-特殊字符",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa74791-6c29-4140-8ebb-5a638015ed9a",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Status code name has Not Found\", function () {",
+									"    pm.response.to.have.status(\"Not Found\");",
+									"});",
+									"",
+									"pm.test(\"body中location的key\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.all.keys(\"status\", \"status_code\");",
+									"});",
+									"",
+									"pm.test(\"检查返回城市是否匹配\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status_code).to.eql(\"AP010010\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/now.json?key={{key}}&location=bei<br>jing     &language=zh-Hans&unit=c",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"now.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "bei<br>jing     "
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "生活类",
+			"item": [
+				{
+					"name": "生活指数",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e9041f7-db97-413b-91de-26b332e8c53c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Your test name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location.id).to.eql(\"WTTDPCGXTWUS\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/life/suggestion.json?key={{key}}&location=suzhou&language=zh-Hans",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"life",
+								"suggestion.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "suzhou"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3日内天气",
+			"item": [
+				{
+					"name": "天气",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d81b3f2-db85-4cd5-9ef9-29806892d0af",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"返回城市校验：苏州\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location.name).to.eql(\"苏州\");",
+									"});",
+									"",
+									"pm.test(\"日期校验：2020-03-15\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].daily[1].date).to.eql(\"2020-03-15\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/daily.json?key={{key}}&location=suzhou&language=zh-Hans&unit=c&start=-1&days=12",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"daily.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "suzhou"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								},
+								{
+									"key": "start",
+									"value": "-1"
+								},
+								{
+									"key": "days",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "天气 -超出权限",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d81b3f2-db85-4cd5-9ef9-29806892d0af",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"返回城市校验：苏州\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].location.name).to.eql(\"苏州\");",
+									"});",
+									"",
+									"pm.test(\"超出权限日期返回空值\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.results[0].daily).to.be.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.seniverse.com/v3/weather/daily.json?key={{key}}&location=suzhou&language=zh-Hans&unit=c&start=3&days=12",
+							"protocol": "https",
+							"host": [
+								"api",
+								"seniverse",
+								"com"
+							],
+							"path": [
+								"v3",
+								"weather",
+								"daily.json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "location",
+									"value": "suzhou"
+								},
+								{
+									"key": "language",
+									"value": "zh-Hans"
+								},
+								{
+									"key": "unit",
+									"value": "c"
+								},
+								{
+									"key": "start",
+									"value": "3"
+								},
+								{
+									"key": "days",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
